@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" 
+        type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" 
+        type="text/javascript"></script>
+</head>
+<body>
+    <div id="header">
+        <h1><a href="/">ASP.NET MVC Libraria</a></h1>
+        <ul id="navlist">
+            <li class="first"><a href="@Url.Content("~")" id="current">Home</a></li>
+            <li><a href="@Url.Content("~/Libraria/")">Libraria</a></li>
+            <li>@{Html.RenderAction("Permbledhje", "Shporta");}</li>
+            <li><a href="@Url.Content("~/Account/LogOn")">Admin</a></li>
+             <li><a href="@Url.Content("~/Account/LogOff")">Dilni</a></li>
+        </ul>        
+    </div>
+
+    @{Html.RenderAction("ZhanreMeny", "Libraria");}
+    @{Html.RenderAction("Letersia", "Libraria");}
+    
+
+    <div id="main">
+        @RenderBody()
+    </div>
+
+    <div id="footer">
+        Copyright ©Fjolla Berisha
+
+    </div>
+</body>
+</html>

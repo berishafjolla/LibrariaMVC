@@ -1,0 +1,21 @@
+﻿@model LibrariaMVC.Models.Libri
+
+@{
+    ViewBag.Title = "Fshirja";
+}
+
+<h2>Konfirmo fshirjen</h2>
+
+<p>A jeni te sigurt qe deshironi te fshini:
+   <strong>@Model.Title</strong>?
+</p>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Fshij" />
+    </p>
+    <p>
+        @Html.ActionLink("Kthehu prapa", "Index")
+    </p>
+
+}

@@ -1,0 +1,22 @@
+﻿
+ @model LibrariaMVC.Models.Zhanri
+@{
+    ViewBag.Title = "Shfleto librat";
+}
+ 
+<div class="genre">
+    <h3><em>@Model.Name</em> Librat</h3>
+ 
+    <ul id="album-list">
+        @foreach (var album in Model.tbl_Librat)
+        {
+            <li>
+                <a href="@Url.Action("Details", new { id = album.LibriId })">
+                    <img alt="@album.Title" src="@album.AlbumArtUrl"  width ="100" height="100" />
+                    <br>
+                    <span>@album.Title</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

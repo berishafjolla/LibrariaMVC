@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LibrariaMVC.Models.Libri>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length <= length) {
+        @input
+    } else {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Shto nje liber", "Krijo")
+</p>
+<table>
+    <tr>
+        <th>
+            Zhanri
+        </th>
+        <th>
+            Autori
+        </th>
+        <th>
+            Titulli
+        </th>
+        <th>
+            Cmimi
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zhanri.Name)
+        </td>
+        <td>
+            @Truncate(item.Autori.Name, 25)
+        </td>
+        <td>
+            @Truncate(item.Title, 25)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+          
+            @Html.ActionLink("Detajet", "Details", new { id=item.LibriId }) |
+            @Html.ActionLink("Fshij", "Delete", new { id=item.LibriId })
+        </td>
+    </tr>
+}
+
+</table>

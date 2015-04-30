@@ -1,0 +1,24 @@
+﻿@model List<LibrariaMVC.Models.Libri>
+@{
+    ViewBag.Title = "ASP.NET MVC Libraria";
+}
+<div id="promotion">
+</div>
+<form action="/Home/Search" method="get">
+<input type="text" name="q" />
+<input type="submit" value="Search" />
+</form>
+<h3><em>Librat</em> me te pelqyer</h3><hr>
+
+<ul id="album-list">
+    @foreach (var album in Model)
+    {
+        <li><a href="@Url.Action("Details", "Libraria",
+                new { id = album.LibriId })">
+
+            <img alt="@album.Title" src="@album.AlbumArtUrl" width ="100" height="100" />
+            <br>
+            <span>@album.Title</span> </a>
+        </li>
+    }
+</ul>

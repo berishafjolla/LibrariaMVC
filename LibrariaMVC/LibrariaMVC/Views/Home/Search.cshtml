@@ -1,0 +1,26 @@
+﻿
+<h2>Search</h2>
+@model IEnumerable<LibrariaMVC.Models.Libri>
+@{ ViewBag.Title = "Search"; }
+<h2>Rezultatet</h2>
+<table id="tabela">
+<tr>
+<th>Autori</th>
+<th>Titulli</th>
+<th>Cmimi</th>
+</tr>
+   
+@foreach (var item in Model)
+{
+    
+    
+    <tr>
+
+        <td>@item.Autori.Name</td>
+       
+        <td> <a href="@Url.Action("Details", "Libraria",
+                new { id = item.LibriId })">@item.Title</a></td>
+        <td>@String.Format("{0:c}", item.Price)</td>
+    </tr>
+}
+</table>

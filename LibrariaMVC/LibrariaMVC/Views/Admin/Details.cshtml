@@ -1,0 +1,40 @@
+﻿@model LibrariaMVC.Models.Libri
+
+@{
+    ViewBag.Title = "Detajet";
+}
+
+<h2>Detajet</h2>
+
+<fieldset>
+    <legend>Libri</legend>
+
+    <div class="display-label">Zhanri</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Zhanri.Name)
+    </div>
+
+    <div class="display-label">Autori</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Autori.Name)
+    </div>
+
+    <div class="display-label">Titulli</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Cmimi</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">Foto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AlbumArtUrl)
+    </div>
+</fieldset>
+<p>
+   
+    @Html.ActionLink("Kthehu prapa", "Index")
+</p>

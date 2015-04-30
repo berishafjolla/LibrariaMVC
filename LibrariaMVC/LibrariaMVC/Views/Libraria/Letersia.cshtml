@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Letersia";
+}
+
+<h2>Letersia</h2>
+@model IEnumerable<LibrariaMVC.Models.Letersia>
+
+<ul id="categories">
+   
+        <li>@foreach (var letersia in Model)
+    {
+        <li>@Html.ActionLink(letersia.Emri, "Browse_Letersia", new { letersia = letersia.Emri })</li>
+    }
+           
+        </li>
+    
+</ul>

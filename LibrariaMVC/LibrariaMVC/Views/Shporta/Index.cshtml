@@ -1,0 +1,103 @@
+﻿@model LibrariaMVC.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Blerja";
+}
+<script src="/Scripts/jquery-1.5.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+       
+        $(".RemoveLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+
+            if (recordToDelete != '') {
+
+                // Perform the ajax post
+                $.post("/Shporta/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeletedId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeletedId).text(data.ItemCount);
+                        }
+
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                        $('#cart-status').text('Cart (' + data.CartCount + ')');
+                    });
+            }
+        });
+
+    });
+
+
+    function handleUpdate() {
+       
+        var json = context.get_data();
+        var data = Sys.Serialization.JavaScriptSerializer.deserialize(json);
+
+        // Update the page elements
+        if (data.ItemCount == 0) {
+            $('#row-' + data.DeletedId).fadeOut('slow');
+        } else {
+            $('#item-count-' + data.DeletedId).text(data.ItemCount);
+        }
+
+        $('#cart-total').text(data.CartTotal);
+        $('#update-message').text(data.Message);
+        $('#cart-status').text('Cart (' + data.CartCount + ')');
+    }
+</script>
+<h3>
+    <em>Rishikoni</em> shporte tuaj:
+</h3>
+<p class="button">
+    @Html.ActionLink("Vazhdoni >>", "Adresa", "Regjistrimi")
+</p>
+<div id="update-message">
+</div>
+<table>
+    <tr>
+        <th>
+            Libri Titulli
+        </th>
+        <th>
+            Cmimi (njesi)
+        </th>
+        <th>
+            Sasia
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr id="row-@item.RecordId">
+            <td>
+                @Html.ActionLink(item.Libri.Title, "Details", "Libraria", new { id = item.LibriId }, null)
+            </td>
+            <td>
+                @item.Libri.Price
+            </td>
+            <td id="item-count-@item.RecordId">
+                @item.Count
+            </td>
+            <td>
+                <a href="#" class="RemoveLink" data-id="@item.RecordId">Largo nga shporta</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td id="cart-total">
+            @Model.CartTotal
+        </td>
+    </tr>
+</table>

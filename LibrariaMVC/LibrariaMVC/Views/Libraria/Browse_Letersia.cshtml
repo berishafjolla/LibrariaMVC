@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Browse_Letersia";
+}
+
+
+
+ @model LibrariaMVC.Models.Letersia
+@{
+    ViewBag.Title = "Shfleto librat sipas letersise";
+}
+ 
+<div class="genre">
+   
+ 
+    <ul id="album-list">
+        @foreach (var album in Model.tbl_Librat)
+        {
+            <li>
+                <a href="@Url.Action("Details", new { id = album.LibriId })">
+                    <img alt="@album.Title" src="@album.AlbumArtUrl"  width ="100" height="100" />
+                    <br>
+                    <span>@album.Title</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

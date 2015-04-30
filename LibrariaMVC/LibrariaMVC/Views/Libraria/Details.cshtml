@@ -1,0 +1,30 @@
+﻿@model LibrariaMVC.Models.Libri
+
+@{
+    ViewBag.Title = "Libri - " + Model.Title;
+}
+
+<h2>@Model.Title</h2>
+
+<p>
+    <img alt="@Model.Title" src="@Model.AlbumArtUrl" />
+</p>
+
+<div id="album-details">
+    <p>
+        <em>Zhanri:</em>
+        @Model.Zhanri.Name
+    </p>
+    <p>
+        <em>Autori:</em>
+        @Model.Autori.Name
+    </p>
+    <p>
+        <em>Cmimi:</em>
+        @String.Format("{0:F}", Model.Price)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Shto ne shporte", "AddToCart", 
+        "Shporta", new { id = Model.LibriId }, "")
+    </p>
+</div>
